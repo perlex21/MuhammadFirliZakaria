@@ -1,67 +1,53 @@
-// Program Sederhana: Menghitung Nilai Rata-rata dan Menentukan Grade
+// script.js
 
-// Input Data
-let nama = prompt("Masukkan nama Anda:");
-let jumlahNilai = parseInt(prompt("Berapa banyak nilai tugas yang ingin dimasukkan?:"));
+document.getElementById("btn-hitung").addEventListener("click", function () {
+  const nama = document.getElementById("nama").value.trim();
+  const nilaiInput = document.getElementById("nilai").value.trim();
 
-// Variabel untuk menyimpan nilai-nilai
-let nilai = [];
+  if (!nama || !nilaiInput) {
+    alert("Mohon isi nama dan nilai terlebih dahulu!");
+    return;
+  }
 
-// Perulangan for untuk menginput nilai
-for (let i = 0; i < jumlahNilai; i++) {
-  let inputNilai = parseFloat(prompt(`Masukkan nilai ke-${i + 1}:`));
-  nilai.push(inputNilai);
-}
+  // Ubah input jadi array angka
+  const nilai = nilaiInput.split(",").map(n => parseFloat(n.trim()));
 
-// Menghitung total dan rata-rata dengan perulangan while
-let i = 0;
-let total = 0;
-while (i < nilai.length) {
-  total += nilai[i];
-  i++;
-}
+  if (nilai.some(isNaN)) {
+    alert("Pastikan semua nilai berupa angka dan dipisahkan dengan koma (misalnya: 80,90,70)");
+    return;
+  }
 
-let rataRata = total / nilai.length;
+  // Hitung rata-rata
+  const total = nilai.reduce((sum, n) => sum + n, 0);
+  const rataRata = total / nilai.length;
 
-// Fungsi untuk menentukan grade berdasarkan nilai rata-rata
-function tentukanGrade(rata) {
+  // Tentukan grade
   let grade;
-  if (rata >= 90) grade = "A";
-  else if (rata >= 80) grade = "B";
-  else if (rata >= 70) grade = "C";
-  else if (rata >= 60) grade = "D";
+  if (rataRata >= 90) grade = "A";
+  else if (rataRata >= 80) grade = "B";
+  else if (rataRata >= 70) grade = "C";
+  else if (rataRata >= 60) grade = "D";
   else grade = "E";
-  return grade;
-}
 
-// Menggunakan switch-case untuk memberi komentar tambahan
-let grade = tentukanGrade(rataRata);
-let komentar;
-switch (grade) {
-  case "A":
-    komentar = "GOKILLL";
-    break;
-  case "B":
-    komentar = "bole laa";
-    break;
-  case "C":
-    komentar = "B aja sih";
-    break;
-  case "D":
-    komentar = "r u serius?";
-    break;
-  default:
-    komentar = "Pelajarin lagi derr";
-}
+  // Tentukan komentar
+  let komentar;
+  switch (grade) {
+    case "A": komentar = "GOKILLL 🔥"; break;
+    case "B": komentar = "Boleh laa 😎"; break;
+    case "C": komentar = "B aja sih 😐"; break;
+    case "D": komentar = "r u serius? 😅"; break;
+    default: komentar = "Pelajarin lagi derr 😭";
+  }
 
-// Menggunakan map untuk menampilkan semua nilai dengan urutan
-let daftarNilai = nilai.map((n, index) => `Nilai ke-${index + 1}: ${n}`).join("\n");
-
-// Output hasil akhir
-alert(
-  `Nama: ${nama}\n` +
-  `${daftarNilai}\n\n` +
-  `Rata-rata: ${rataRata.toFixed(2)}\n` +
-  `Grade: ${grade}\n` +
-  `Komentar: ${komentar}`
-);
+  // Tampilkan hasil
+  const hasilDiv = document.getElementById("hasil");
+  hasilDiv.style.display = "block";
+  hasilDiv.innerHTML = `
+    <h3>Hasil Perhitungan</h3>
+    <p><strong>Nama:</strong> ${nama}</p>
+    <p><strong>Nilai-nilai:</strong> ${nilai.join(", ")}</p>
+    <p><strong>Rata-rata:</strong> ${rataRata.toFixed(2)}</p>
+    <p><strong>Grade:</strong> ${grade}</p>
+    <p><strong>Komentar:</strong> ${komentar}</p>
+  `;
+});
