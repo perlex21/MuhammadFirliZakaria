@@ -1,13 +1,71 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Program Nilai - Muhammad Firli Zakaria</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hitung Nilai Rata-rata</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8fafc;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #2563eb;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background-color: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1e40af;
+    }
+    #hasil {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e0f2fe;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <h1>Program Menghitung Nilai Rata-rata</h1>
-  <p>Program ini akan meminta input lewat pop-up (prompt).</p>
+  <h1>Hitung Nilai Rata-rata</h1>
+
+  <form id="form-nilai">
+    <label>Nama:</label>
+    <input type="text" id="nama" placeholder="Masukkan nama Anda" required />
+
+    <label>Nilai (pisahkan dengan koma):</label>
+    <input type="text" id="nilai" placeholder="Contoh: 80, 90, 75" required />
+
+    <button type="button" id="btn-hitung">Hitung</button>
+  </form>
+
+  <div id="hasil"></div>
 
   <script src="./MuhammadFirliZakaria.js"></script>
 </body>
