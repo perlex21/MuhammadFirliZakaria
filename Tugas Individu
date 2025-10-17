@@ -1,0 +1,67 @@
+// Program Sederhana: Menghitung Nilai Rata-rata dan Menentukan Grade
+
+// 1️⃣ Input Data
+let nama = prompt("Masukkan nama Anda:");
+let jumlahNilai = parseInt(prompt("Berapa banyak nilai tugas yang ingin dimasukkan?:"));
+
+// 2️⃣ Variabel untuk menyimpan nilai-nilai
+let nilai = [];
+
+// 3️⃣ Perulangan for untuk menginput nilai
+for (let i = 0; i < jumlahNilai; i++) {
+  let inputNilai = parseFloat(prompt(`Masukkan nilai ke-${i + 1}:`));
+  nilai.push(inputNilai);
+}
+
+// 4️⃣ Menghitung total dan rata-rata dengan perulangan while
+let i = 0;
+let total = 0;
+while (i < nilai.length) {
+  total += nilai[i];
+  i++;
+}
+
+let rataRata = total / nilai.length;
+
+// 5️⃣ Fungsi untuk menentukan grade berdasarkan nilai rata-rata
+function tentukanGrade(rata) {
+  let grade;
+  if (rata >= 90) grade = "A";
+  else if (rata >= 80) grade = "B";
+  else if (rata >= 70) grade = "C";
+  else if (rata >= 60) grade = "D";
+  else grade = "E";
+  return grade;
+}
+
+// 6️⃣ Menggunakan switch-case untuk memberi komentar tambahan
+let grade = tentukanGrade(rataRata);
+let komentar;
+switch (grade) {
+  case "A":
+    komentar = "GOKILLL";
+    break;
+  case "B":
+    komentar = "bole laa";
+    break;
+  case "C":
+    komentar = "B aja sih";
+    break;
+  case "D":
+    komentar = "r u serius?";
+    break;
+  default:
+    komentar = "Pelajarin lagi derr";
+}
+
+// 7️⃣ Menggunakan map untuk menampilkan semua nilai dengan urutan
+let daftarNilai = nilai.map((n, index) => `Nilai ke-${index + 1}: ${n}`).join("\n");
+
+// 8️⃣ Output hasil akhir
+alert(
+  `Nama: ${nama}\n` +
+  `${daftarNilai}\n\n` +
+  `Rata-rata: ${rataRata.toFixed(2)}\n` +
+  `Grade: ${grade}\n` +
+  `Komentar: ${komentar}`
+);
